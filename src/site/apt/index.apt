@@ -1,0 +1,21 @@
+	------
+	Schema Registry Client
+	------
+
+What is the Schema Registry?
+
+ {{{http://docs.confluent.io/2.0.0/schema-registry/docs/index.html}Schema Registry}}
+ provides a serving layer for your metadata. It provides a RESTful interface for
+  storing and retrieving Avro schemas. It stores a versioned history of all schemas,
+  provides multiple compatibility settings and allows evolution of schemas according
+  to the configured compatibility setting. It provides serializers that plug into
+  Kafka clients that handle schema storage and retrieval for Kafka messages that
+  are sent in the Avro format.
+
+About the client project
+
+ The schema registry client project provide the schema registry integration into
+ AIA infrastructure with relevant client, tools and documentation.
+
+[./images/aia-schema-registry-client.png]
+

@@ -1,0 +1,40 @@
+	------
+	Schema Import Tool
+	------
+
+Schema Import Tool
+
+  The schema import tool was deployed as a docker image which packaged
+  everything inside, you just need provide simple parameters to perform the
+  import.
+
+* Usage
+
++---------------------
+./bin/batch-schema-importer.sh SCHEMA_SOURCE_DOCKER_VOLUME_PATH REGISTRY_ENDPOINT_ADDRESS
++---------------------
+
+* Example
+
++---------------------
+./bin/batch-schema-importer.sh \
+//c//Users//eguoduu//ericsson//src//schema-registry-client//target//generated-test-data//avro \
+http://192.168.99.100:8081/
++---------------------
+
+* The Docker Image
+
+  The image published as <<armdocker.rnd.ericsson.se/aia/schema-registry-importer>>,
+  it pass all command line parameters into
+  <<com.ericsson.component.aia.model.registry.importer.BatchSchemaImporter>> which will
+  actual doing the work.
+
+  You could run it with required parameters:
+
++---------------------
+docker run -it --rm -v \
+//c//Users//eguoduu//ericsson//src//schema-registry-client//target//generated-test-data//avro://avro-schemas \
+armdocker.rnd.ericsson.se/aia/schema-registry-importer \
+-dir=//avro-schemas \
+-registry=http://192.168.99.100:8081/
++---------------------

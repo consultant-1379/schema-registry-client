@@ -1,0 +1,19 @@
+# USAGE:
+#       cd src/test/resources/test-schema-registry-cluster/dependency
+#       docker-compose stop && docker-compose rm -f && docker-compose up
+#  OR:
+#       docker stop it-zookeeper it-kafka && docker rm it-zookeeper it-kafka
+#       docker run -d --name it-zookeeper -p 2181:2181 jplock/zookeeper
+#       docker run -d --name it-kafka -p 9092:9092 --link it-zookeeper:zookeeper --env KAFKA_ADVERTISED_HOST_NAME=192.168.99.100 ches/kafka
+it-zookeeper:
+  image: confluent/zookeeper
+  ports:
+    - "12181:2181"
+it-kafka:
+  image: confluent/kafka
+  ports:
+    - "19092:9092"
+  links:
+    - zookeeper
+  environment:
+    KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100

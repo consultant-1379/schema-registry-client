@@ -1,0 +1,15 @@
+	------
+	Release Notes
+	------
+
+Release Notes
+
+* Downloads
+
+      * {{{./dist/schema-registry-importer-1.0.5.zip}schema-registry-importer-1.0.5}}
+
+* Changes
+
+** 1.0.5
+
+      * Initial release after producfication.

@@ -1,0 +1,54 @@
+	------
+	Project Development
+	------
+
+Project Development
+
+ Here are the information to help you get started with local development on the project.
+
+
+* Get the code
+
++---------------------
+git clone ssh://gerrit.ericsson.se:29418/AIA/model/schema-registry-client
++---------------------
+
+* Build client locally
+
+  Do a full build with integration tests which require a running schema registry:
+
++---------------------
+mvn clean install -DschemaRegistry.address=http://192.168.99.100:8081/
++---------------------
+
+  Do a build without tests:
+
++---------------------
+mvn clean install -DskipTests
++---------------------
+
+* Build documentation
+
+  With following command it will generate the site at <<target/site/index.html>>:
+
++---------------------
+mvn clean site
++---------------------
+
+* Docker build
+
++---------------------
+mvn clean package assembly:single docker:build \
+-DschemaRegistry.address=http://192.168.99.100:8081/
++---------------------
+
+  After you successfully built the image, you may run following command to run it locally:
+
++---------------------
+docker run -it --rm -v \
+//c//Users//eguoduu//ericsson//src//schema-registry-client//target//generated-test-data//avro://avro-schemas \
+armdocker.rnd.ericsson.se/aia/schema-registry-importer \
+-dir=//avro-schemas \
+-registry=http://192.168.99.100:8081/
++---------------------
+

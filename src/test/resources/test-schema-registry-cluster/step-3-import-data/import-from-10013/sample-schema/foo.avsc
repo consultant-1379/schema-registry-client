@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "FromMasterDc1Node3",
+  "namespace": "test.integration",
+  "fields": [
+    {
+      "name": "P1",
+      "type": "int"
+    },
+    {
+      "name": "P2",
+      "type": "string"
+    },
+    {
+      "name": "P3",
+      "type": "long"
+    }
+  ]
+}

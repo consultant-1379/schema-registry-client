@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/DECORATION/1.3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd">
+    <bannerLeft>
+    	<name>Schema Registry Client</name>
+    	<href>http://www.ericsson.com/</href>
+    </bannerLeft>
+
+    <publishDate position="right"/>
+    
+    <bannerRight>
+    	<src>images/logo.png</src>
+    	<href>http://www.ericsson.com/</href>
+    </bannerRight>
+    
+    <poweredBy>
+    	<logo name="Ericsson" href="http://www.ericsson.com/" img="images/logo.png" />
+    </poweredBy>
+    
+    <body>
+    	<links>
+            <item name="CDS Portal" href="https://cds.ericsson.se/#portal"/>
+    	</links>
+    	<menu name="Schema Registry Client">
+    		<item name="Home" href="/index.html"/>
+    		<item name="Java Client" href="/java-client.html"/>
+    		<item name="Schema Import Tool" href="/schema-import-tool.html"/>
+    		<item name="Development" href="/development.html"/>
+    		<item name="Release Notes" href="/release-notes.html"/>
+    	</menu>
+    	<menu name="Maven Reports">
+            <item name="Project Information" href="/project-info.html"/>
+            <item name="Project Reports" href="/project-reports.html"/>
+    	</menu>
+    </body>
+  
+    <skin>
+        <groupId>com.ericsson.cds</groupId>
+        <artifactId>ericsson-skin-stats</artifactId>
+        <version>1.0.1</version>
+    </skin>
+    <custom>
+        <uiStats>
+            <serverUrl>https://cds.ericsson.se/analytics/</serverUrl>
+            <siteId>21</siteId>
+        </uiStats>
+        <fluidoSkin>
+            <sourceLineNumbersEnabled>false</sourceLineNumbersEnabled>
+        </fluidoSkin>
+    </custom>
+	
+</project>
+

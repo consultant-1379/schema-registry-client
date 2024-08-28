@@ -1,0 +1,68 @@
+	------
+	The Java Client
+	------
+
+The Java Client
+
+  You may use the Java client to get the Avro Schema from Schema Registry efficiently.
+  It has a built in thread safe in memory cache to make it working a high throughput
+  processing system.
+
+* Maven Dependency
+
+  The client has been released to
+  {{{https://arm101-eiffel004.lmera.ericsson.se:8443/nexus/content/repositories/aia-releases/model/schema-registry-client/}AIA maven repository}},
+  you may add dependency to you project as:
+
++---------------------
+<dependency>
+  <groupId>com.ericsson.component.aia.model</groupId>
+  <artifactId>schema-registry-client</artifactId>
+  <version>1.0.4</version>
+</dependency>
++---------------------
+
+* Configuration
+
+  You may configure the schema registry service url via system property:
+
++---------------------
+-DschemaRegistry.address=http://ieatrcxb3650.athtem.eei.ericsson.se:8090/ -DschemaRegistry.cacheMaximumSize=30000
++---------------------
+
+* Usage from Java
+
+
+* Creating a schema registry client
++---------------------
+import com.ericsson.component.aia.model.registry.impl.SchemaRegistryClientFactory;
+import com.ericsson.component.aia.model.registry.client.SchemaRegistryClient;
+import com.ericsson.component.aia.model.registry.client.RegisteredSchema;
+import org.apache.avro.Schema;
+
+// Default client ("schema.registry.url" & "schema.registry.cache.size" system properties used, or if not present, default values used)
+SchemaRegistryClient client = SchemaRegistryClientFactory.newSchemaRegistryClientInstance();
+
+// Default client instance is available from SchemaRegistryClient interface also.
+SchemaRegistryClient client = SchemaRegistryClient.INSTANCE;
+
+// Configured client ("schema.registry.url" & "schema.registry.cache.size" specified in Properties argument used, or if not present, default values used)
+Properties properties = new Properties();
+properties.put("schema.registry.url","http:localhost:8082");
+properties.put("schema.registry.cache.size","5000");
+SchemaRegistryClient configuredClient = SchemaRegistryClientFactory.newSchemaRegistryClientInstance(properties);
+
+//Get avro schema by id
+Schema schema =SchemaRegistryClient.INSTANCE.lookup(1234L);
+
+//Get avro schema by subject
+RegisteredSchema registeredSchema =SchemaRegistryClient.INSTANCE.lookup("foo.Bar");
+long schemaId = registeredSchema.getSchemaId();
+Schema schema = registeredSchema.getSchema();
+
+//Register avro schema and get generated schema id for registered schema
+long schemaId = SchemaRegistryClient.INSTANCE.put(schema);
++---------------------
+
+
+

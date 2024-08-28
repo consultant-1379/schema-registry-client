@@ -1,0 +1,22 @@
+# USAGE:
+#       cd src/test/resources/test-schema-registy-docker-compose
+#       docker-compose stop && docker-compose rm -f && docker-compose up
+zookeeper:
+  image: confluent/zookeeper
+  ports:
+    - "2181:2181"
+kafka:
+  image: confluent/kafka
+  ports:
+    - "9092:9092"
+  links:
+    - zookeeper
+  environment:
+    KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
+schema-registry:
+  image: confluent/schema-registry
+  ports:
+    - "8081:8081"
+  links:
+    - zookeeper
+    - kafka

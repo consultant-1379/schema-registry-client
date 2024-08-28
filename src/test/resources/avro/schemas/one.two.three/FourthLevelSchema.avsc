@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "FourthLevelSchema",
+  "namespace": "com.ericsson.oss.avro.example",
+  "fields": [
+    {
+      "name": "P1",
+      "type": "int"
+    },
+    {
+      "name": "P2",
+      "type": "string"
+    },
+    {
+      "name": "P3",
+      "type": "long"
+    }
+  ]
+}

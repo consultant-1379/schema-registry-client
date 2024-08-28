@@ -1,0 +1,28 @@
+# USAGE:
+#       cd src/test/resources/test-schema-registry-cluster/schema-registry-cluster
+#       docker-compose stop && docker-compose rm -f && docker-compose up
+#  OR:
+#       docker stop schema-registry-master-dc1-node1 schema-registry-master-dc1-node2 schema-registry-master-dc1-node3 schema-registry-slave-dc2-node1 schema-registry-slave-dc2-node2 schema-registry-slave-dc2-node3
+#       docker rm schema-registry-master-dc1-node1 schema-registry-master-dc1-node2 schema-registry-master-dc1-node3 schema-registry-slave-dc2-node1 schema-registry-slave-dc2-node2 schema-registry-slave-dc2-node3
+#       docker run -d --name schema-registry-master-dc1-node1 -p 10011:8081 --link it-zookeeper:zookeeper --link it-kafka:kafka --env SCHEMA_REGISTRY_MASTER_ELIGIBILITY=true confluent/schema-registry
+#       docker run -d --name schema-registry-master-dc1-node2 -p 10012:8081 --link it-zookeeper:zookeeper --link it-kafka:kafka --env SCHEMA_REGISTRY_MASTER_ELIGIBILITY=true confluent/schema-registry
+#       docker run -d --name schema-registry-master-dc1-node3 -p 10013:8081 --link it-zookeeper:zookeeper --link it-kafka:kafka --env SCHEMA_REGISTRY_MASTER_ELIGIBILITY=true confluent/schema-registry
+#       docker run -d --name schema-registry-slave-dc2-node1 -p 10021:8081 --link it-zookeeper:zookeeper --link it-kafka:kafka --env SCHEMA_REGISTRY_MASTER_ELIGIBILITY=false confluent/schema-registry
+#       docker run -d --name schema-registry-slave-dc2-node2 -p 10022:8081 --link it-zookeeper:zookeeper --link it-kafka:kafka --env SCHEMA_REGISTRY_MASTER_ELIGIBILITY=false confluent/schema-registry
+#       docker run -d --name schema-registry-slave-dc2-node3 -p 10023:8081 --link it-zookeeper:zookeeper --link it-kafka:kafka --env SCHEMA_REGISTRY_MASTER_ELIGIBILITY=false confluent/schema-registry
+
+#       docker logs schema-registry-master-dc1-node1
+#       docker logs schema-registry-master-dc1-node2
+
+schema-registry-master-dc1-node1:
+  image: confluent/zookeeper
+  ports:
+    - "12181:2181"
+it-kafka:
+  image: confluent/kafka
+  ports:
+    - "19092:9092"
+  links:
+    - zookeeper
+  environment:
+    KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
